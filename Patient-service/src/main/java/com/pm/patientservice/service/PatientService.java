@@ -1,5 +1,6 @@
 package com.pm.patientservice.service;
 
+import com.pm.patientservice.dto.PatientRespondDTO;
 import com.pm.patientservice.model.Patient;
 import com.pm.patientservice.repository.PatientRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ public class PatientService {
     }
 
     public List<PatientRespondDTO> getPatient() {
-        List<Patient> patients = patientRepository.findAll();
-        patients
+
     }
 }
