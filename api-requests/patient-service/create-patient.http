@@ -1,0 +1,22 @@
+### POST create a new patient
+POST http://localhost:4000/patients
+Content-Type: application/json
+
+{
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "john.doe@email.com",
+  "phoneNumber": "+264812345678",
+  "address": "123 Independence Avenue, Windhoek",
+  "dateOfBirth": "1995-06-15",
+  "registeredDate": "2026-02-24",
+  "gender": "Male",
+  "bloodType": "O+",
+  "emergencyContactName": "Jane Doe",
+  "emergencyContactPhone": "+264811112222",
+  "insured": true,
+  "insuranceProvider": "Momentum Health",
+  "medicalHistory": "No known chronic illnesses.",
+  "lastVisitDate": "2026-02-24T10:30:00",
+  "status": "ACTIVE"
+}
