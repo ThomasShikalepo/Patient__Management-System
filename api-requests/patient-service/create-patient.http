@@ -11,7 +11,7 @@ Content-Type: application/json
   "dateOfBirth": "1995-06-15",
   "registeredDate": "2026-02-24",
   "gender": "Male",
-  "bloodType": "O+",
+  "bloodType": "z",
   "emergencyContactName": "Jane Doe",
   "emergencyContactPhone": "+264811112222",
   "insured": true,
