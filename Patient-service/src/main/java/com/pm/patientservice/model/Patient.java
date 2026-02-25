@@ -31,7 +31,7 @@ public class Patient {
     private String email;
 
     @NotBlank
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
 
     @NotBlank
