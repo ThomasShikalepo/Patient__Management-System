@@ -4,13 +4,17 @@ import com.pm.patientservice.dto.PatientRequestDTO;
 import com.pm.patientservice.dto.PatientRespondDTO;
 import com.pm.patientservice.exception.EmailAlreadyExistsException;
 import com.pm.patientservice.exception.EmailAndPhoneNumberAlreadyExistsException;
+import com.pm.patientservice.exception.PatientNotFoundException;
 import com.pm.patientservice.exception.PhoneNumberAlreadyExistsException;
 import com.pm.patientservice.mapper.PatientMapper;
 import com.pm.patientservice.model.Patient;
 import com.pm.patientservice.repository.PatientRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PatientService {
@@ -34,17 +38,47 @@ public class PatientService {
         boolean existsByPhoneNumber = patientRepository.existsByPhoneNumber(patientRequestDTO.getPhoneNumber());
 
         if(existsByEmail && existsByPhoneNumber) {
-            throw new EmailAndPhoneNumberAlreadyExistsException("Email and phone already exist");
+            throw new EmailAndPhoneNumberAlreadyExistsException("Email and phone already exist: " + patientRequestDTO.getEmail() + " And " + patientRequestDTO.getPhoneNumber());
         }
-         else if(existsByEmail) {
-            throw new EmailAlreadyExistsException("Email already exists");
+        else if(existsByEmail) {
+            throw new EmailAlreadyExistsException("Email already exists: " + patientRequestDTO.getEmail());
         } else if (existsByPhoneNumber) {
-            throw new PhoneNumberAlreadyExistsException("Phone number already exists");
+            throw new PhoneNumberAlreadyExistsException("Phone number already exists: " + patientRequestDTO.getPhoneNumber());
         }
 
         Patient newPatient = patientRepository.save(PatientMapper.toModel(patientRequestDTO));
 
         return PatientMapper.toDTO(newPatient);
+    }
+
+    public  PatientRespondDTO updatePatient(UUID patient_Id, PatientRequestDTO patientRequestDTO) {
+
+        Patient patient = patientRepository.findById(patient_Id).orElseThrow(() -> new PatientNotFoundException("Patient not found with ID: " + patient_Id));
+
+        if(patientRepository.existsByEmail(patientRequestDTO.getEmail())) {
+            throw new EmailAlreadyExistsException("Email already exist: " + patientRequestDTO.getEmail());
+        }
+
+
+        patient.setFirstname(patientRequestDTO.getFirstname());
+        patient.setLastname(patientRequestDTO.getLastname());
+        patient.setEmail(patientRequestDTO.getEmail());
+        patient.setPhoneNumber(patientRequestDTO.getPhoneNumber());
+        patient.setAddress(patientRequestDTO.getAddress());
+        patient.setDateOfBirth(LocalDate.parse(patientRequestDTO.getDateOfBirth() ));
+        patient.setGender(patientRequestDTO.getGender());
+        patient.setBloodType(patientRequestDTO.getBloodType());
+        patient.setEmergencyContactName(patientRequestDTO.getEmergencyContactName());
+        patient.setEmergencyContactPhone(patientRequestDTO.getEmergencyContactPhone());
+        patient.setInsured(patientRequestDTO.getInsured());
+        patient.setInsuranceProvider(patientRequestDTO.getInsuranceProvider());
+        patient.setMedicalHistory(patientRequestDTO.getMedicalHistory());
+        patient.setLastVisitDate(LocalDateTime.parse(patientRequestDTO.getLastVisitDate()));
+        patient.setStatus(patientRequestDTO.getStatus());
+
+        Patient updatePatient = patientRepository.save(patient);
+
+        return PatientMapper.toDTO(updatePatient);
     }
 
 
