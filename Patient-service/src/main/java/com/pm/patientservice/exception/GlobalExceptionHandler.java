@@ -1,5 +1,7 @@
 package com.pm.patientservice.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -11,6 +13,8 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationException(MethodArgumentNotValidException ex) {
 
@@ -18,6 +22,35 @@ public class GlobalExceptionHandler {
 
         ex.getBindingResult().getFieldErrors().forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
 
+        return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public  ResponseEntity<Map<String,String>> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex){
+
+        log.warn("Email address already exist {}", ex.getMessage());
+
+        Map<String,String> errors = new HashMap<>();
+        errors.put("message", "Email address already exists");
+        return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler(PhoneNumberAlreadyExistsException.class)
+    public  ResponseEntity<Map<String,String>> handlePhoneNumberAlreadyExistsException(PhoneNumberAlreadyExistsException ex){
+
+        log.warn("Phone number already exist {}", ex.getMessage());
+
+        Map<String,String> errors = new HashMap<>();
+        errors.put("message", "Phone number already exists");
+        return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler(EmailAndPhoneNumberAlreadyExistsException.class)
+    public ResponseEntity<Map<String, String>> handleEmailAndPhoneAlreadyExists(EmailAndPhoneNumberAlreadyExistsException ex) {
+        log.warn("Email and phone already exist {}", ex.getMessage());
+
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", "Email and phone number already exist");
         return ResponseEntity.badRequest().body(errors);
     }
 }
