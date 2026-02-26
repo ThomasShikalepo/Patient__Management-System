@@ -63,4 +63,6 @@ public class GlobalExceptionHandler {
         errors.put("message", "Patient not found!");
         return ResponseEntity.badRequest().body(errors);
     }
+
+
 }

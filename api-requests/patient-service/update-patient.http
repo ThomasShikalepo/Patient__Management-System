@@ -1,21 +1,21 @@
 ### Update an existing patient entity
-PUT http://localhost:4000/patients/9439bfac-8cfd-4202-adf0-7eb5c3762455
+PUT http://localhost:4000/patients/963cac78-40ea-43e7-b2a9-dfba84965f6c
 Content-Type: application/json
 
 {
-  "firstname": "John",
-  "lastname": "Doe",
-  "email": "thomasEfraim@gmail.com",
-  "phoneNumber": "+264813028654",
+  "firstname": "thomas",
+  "lastname": "deon",
+  "email": "thomas@gmail.com",
+  "phoneNumber": "+264812490556",
   "address": "123 Independence Avenue, Windhoek",
   "dateOfBirth": "2027-06-15",
-  "gender": "Male",
+  "gender": "Famele",
   "bloodType": "A-",
   "emergencyContactName": "Jane Doe",
   "emergencyContactPhone": "+264812490555",
   "insured": true,
-  "insuranceProvider": "Momentum Health",
-  "medicalHistory": "No known chronic illnesses.",
+  "insuranceProvider": "Momentum",
+  "medicalHistory": "Cancer",
   "lastVisitDate": "2027-02-24T10:30:00",
   "status": "ACTIVE"
 }

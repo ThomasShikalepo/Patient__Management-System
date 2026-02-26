@@ -2,10 +2,7 @@ package com.pm.patientservice.service;
 
 import com.pm.patientservice.dto.PatientRequestDTO;
 import com.pm.patientservice.dto.PatientRespondDTO;
-import com.pm.patientservice.exception.EmailAlreadyExistsException;
-import com.pm.patientservice.exception.EmailAndPhoneNumberAlreadyExistsException;
-import com.pm.patientservice.exception.PatientNotFoundException;
-import com.pm.patientservice.exception.PhoneNumberAlreadyExistsException;
+import com.pm.patientservice.exception.*;
 import com.pm.patientservice.mapper.PatientMapper;
 import com.pm.patientservice.model.Patient;
 import com.pm.patientservice.repository.PatientRepository;
@@ -55,10 +52,19 @@ public class PatientService {
 
         Patient patient = patientRepository.findById(patient_Id).orElseThrow(() -> new PatientNotFoundException("Patient not found with ID: " + patient_Id));
 
-        if(patientRepository.existsByEmail(patientRequestDTO.getEmail())) {
-            throw new EmailAlreadyExistsException("Email already exist: " + patientRequestDTO.getEmail());
+        if(patientRequestDTO.getEmail() != null && !patientRequestDTO.getEmail().equalsIgnoreCase(patient.getEmail())) {
+            if (patientRepository.existsByEmail(patientRequestDTO.getEmail())){
+                throw new EmailAlreadyExistsException("Email already exists" + patientRequestDTO.getEmail());
+            }
+            patient.setEmail(patientRequestDTO.getEmail());
         }
 
+        if(patientRequestDTO.getPhoneNumber() != null && !patientRequestDTO.getPhoneNumber().equals(patient.getPhoneNumber())){
+            if(patientRepository.existsByPhoneNumber(patientRequestDTO.getPhoneNumber())) {
+                throw new PhoneNumberAlreadyExistsException("Phone number already exists");
+            }
+            patient.setPhoneNumber(patientRequestDTO.getPhoneNumber());
+        }
 
         patient.setFirstname(patientRequestDTO.getFirstname());
         patient.setLastname(patientRequestDTO.getLastname());
