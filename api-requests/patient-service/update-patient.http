@@ -1,14 +1,14 @@
 ### Update an existing patient entity
-PUT http://localhost:4000/patients/963cac78-40ea-43e7-b2a9-dfba84965f6c
+PUT http://localhost:4000/patients/43f018b2-441c-4012-aeb2-987684f625db
 Content-Type: application/json
 
 {
   "firstname": "thomas",
   "lastname": "deon",
-  "email": "thomas@gmail.com",
+  "email": "thomasshikalepo@gmail.com",
   "phoneNumber": "+264812490556",
-  "address": "123 Independence Avenue, Windhoek",
-  "dateOfBirth": "2027-06-15",
+  "address": "gg",
+  "dateOfBirth": "",
   "gender": "Famele",
   "bloodType": "A-",
   "emergencyContactName": "Jane Doe",
