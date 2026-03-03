@@ -6,7 +6,16 @@
       <list>
         <option value="$PROJECT_DIR$/Patient-service/pom.xml" />
         <option value="$PROJECT_DIR$/billing-service/pom.xml" />
+        <option value="$PROJECT_DIR$/billing_service/pom.xml" />
+        <option value="$PROJECT_DIR$/billing/pom.xml" />
+        <option value="$PROJECT_DIR$/billling_service/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/billing-service/pom.xml" />
+        <option value="$PROJECT_DIR$/billing_service/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2">
