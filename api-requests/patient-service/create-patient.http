@@ -3,10 +3,10 @@ POST http://localhost:4000/patients
 Content-Type: application/json
 
 {
-  "firstname": "John",
-  "lastname": "Doe",
-  "email": "thomasshikalepo@gmail.com",
-  "phoneNumber": "+264813028654",
+  "firstname": "deon",
+  "lastname": "thomas",
+  "email": "thomasdeon@gmail.com",
+  "phoneNumber": "+264812658",
   "address": "123 Independence Avenue, Windhoek",
   "dateOfBirth": "2027-06-15",
   "registeredDate": "2026-02-24",
