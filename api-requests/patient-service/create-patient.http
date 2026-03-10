@@ -5,8 +5,8 @@ Content-Type: application/json
 {
   "firstname": "deon",
   "lastname": "thomas",
-  "email": "thomas@gmail.com",
-  "phoneNumber": "+264812558",
+  "email": "thomasdeon@gmail.com",
+  "phoneNumber": "+264812490557",
   "address": "123 Independence Avenue, Windhoek",
   "dateOfBirth": "2027-06-15",
   "registeredDate": "2026-02-24",
