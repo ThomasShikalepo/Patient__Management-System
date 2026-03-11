@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="analytics-service" />
+        <module name="api-gateway" />
         <module name="Patient-service" />
         <module name="billing" />
       </profile>
@@ -20,6 +21,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Patient-service" options="-parameters" />
       <module name="analytics-service" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
       <module name="billing" options="-parameters" />
       <module name="billing-service" options="-parameters" />
       <module name="billing_service" options="-parameters" />
